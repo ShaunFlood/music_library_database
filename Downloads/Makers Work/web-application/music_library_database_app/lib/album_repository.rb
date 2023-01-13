@@ -36,7 +36,6 @@ class AlbumRepository
     album.title = result_set[0]['title']
     album.release_year = result_set[0]['release_year']
     album.artist_id = result_set[0]['artist_id'].to_i
-
     return album
   end
 

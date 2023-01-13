@@ -31,7 +31,7 @@ describe Application do
       end 
     end 
     context 'POST /artist' do 
-      it 'it should create a new artist' do 
+      it 'should create a new artist' do 
         response = post('artist',
         name: 'Wild nothing',
         genre: 'Indie')
@@ -41,6 +41,25 @@ describe Application do
         response = get('artist')
         expect(response.body).to include('Wild nothing')
       end 
+    end 
+
+    context 'GET /artists' do 
+      it 'should return a list of artist, which hyperlinks to their individual page' do
+        response = get('/artists')
+        expect(response.status).to eq(200)
+        expect(response.body).to include('<a href="/artists/1">Pixies</a><br />')
+        expect(response.body).to include('<a href="/artists/2">ABBA</a><br />')
+        expect(response.body).to include('<a href="/artists/3">Taylor Swift</a><br />')
+        expect(response.body).to include('<a href="/artists/4">Nina Simone</a><br />')
+      end
+    end
+    context 'get /artists/:id' do
+      it 'should return a page with the relevant artist based upon inputted id, /artist/1 = pixies etc' do
+        response = get('/artists/1')
+        expect(response.status).to eq(200)
+        expect(response.body).to include('<h1>Pixies</h1>')
+        expect(response.body).to include('Genre: Rock')
+      end
     end 
    
     # Request:

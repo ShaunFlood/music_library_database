@@ -1,0 +1,12 @@
+<html>
+  <head></head>
+  <body>
+    <h1>Albums</h1>
+    <% @albums.each do |album| %> #this has took the list of all the albums and done the each here instead of the each being done in the app.
+    <div>
+    Title: <%= album.title %>
+    Release year: <%= album.release_year %>
+    </div>
+    <% end %>
+  </body>
+</html>
